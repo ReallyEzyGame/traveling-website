@@ -1,0 +1,9 @@
+.conversation-box {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    min-width: 400px;
+    max-width: 800px;
+    height: 600px;
+    width: 400px;
+}

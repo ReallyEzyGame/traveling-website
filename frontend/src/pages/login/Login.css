@@ -1,0 +1,123 @@
+
+form {
+    display: block;
+    border-radius: 0.5em;
+    
+}
+/* Login/Signup background*/
+.login-background {
+    background: linear-gradient(to right, purple, pink);
+}
+.login-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: fit-content;
+    width: 50%;
+
+    justify-self: center;
+    align-self: center;
+    top: 10em;
+}
+.log-btn-container {
+    display: flex;
+    flex: row;
+    justify-content: center;
+}
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+/* Button to switch form*/
+.tab {
+    display: flex;
+    width: 25%;
+    position: relative;
+    
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: 1em;
+    padding-top: 1em;
+
+    font-weight: 650;
+    font-size: large;
+}
+ul {
+    list-style-type: none;
+}
+.underline {
+    position: absolute;
+    bottom: -2px;
+    left: 0px;
+    right: 0px;
+    height: 4px;
+    background: rgb(88, 88, 230);
+    box-shadow: 0 0 5px 2px rgb(191, 191, 255);
+}
+/* Other options fields*/
+.option-field {
+    border-radius: 0.5em;
+    margin-top: 1em;
+
+    height: fit-content;
+    width: 50%;
+
+    cursor: pointer;
+    background-color: white;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+
+    justify-self: center;
+}
+/*Seperator*/
+.seperator {
+    font-weight: 700;
+    color: black;
+    width: 75%;
+}
+
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+.input-tag {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    height: 40px;
+
+    margin-top: 0;
+    left: 20%;
+}
+.input-field {
+    width: 50%;
+    justify-items: left;
+
+    padding: 0.5em;
+    align-self: center;
+}
+
+/* Submition*/
+.submit-btn {
+    display: flex;
+    height: 60px;
+    width: 100px;
+    border-radius: 0.75em;
+    border-width: 2px;
+    border-color: black;
+    background-color: rgb(130, 24, 192);
+
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

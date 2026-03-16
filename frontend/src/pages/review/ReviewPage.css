@@ -1,0 +1,33 @@
+.left-side-bar {
+    display: block;
+    position: sticky;
+
+    background-color: antiquewhite;
+
+    overflow: hidden;
+    width: min-content;
+    height: 100%;
+    top: 0;
+}
+
+
+/* Header*/
+.review-header-bar {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: black;
+
+    height: 50px;
+    width: 100%;
+}
+/* Review frame*/
+.review-body-page {
+    display: flex;
+}
+.vertical-seperator {
+    border-left: 1px solid black;
+    height: 200px;
+}
