@@ -6,6 +6,8 @@ import AboutUs from './pages/about/About';
 import Product from './pages/product/Product';
 import ReviewPage from './pages/review/ReviewPage';
 import ChatBox from './pages/chatbox/ChatBox';
+import { SignUp } from './pages/signin/SignUp';
+
 
 function App() {
   return (
@@ -15,11 +17,13 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/product" element={<Product />} />
         <Route path="/login" element={<Login />} />
+        <Route path='signup' element={<SignUp />} />
         <Route path='/review' element={<ReviewPage />} />
         <Route path='/chatbox' element={<ChatBox />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
 
 export default App
