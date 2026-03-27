@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+
+@layer utilities {
+    /* hide for Chrome, Safari and Opera*/
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}

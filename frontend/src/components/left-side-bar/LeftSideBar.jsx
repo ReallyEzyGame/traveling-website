@@ -16,12 +16,12 @@ export function LeftSideBarProvider({ children }) {
         </LeftSideBarContext>
     );
 }
-export function LeftSideBar({ children, ...props }) {
+export function LeftSideBar({ children, ...rest }) {
     const { isOpen } = useContext(LeftSideBarContext);
 
     return (
         <motion.div
-            {...props}
+            {...rest}
             initial={false}
             variants={sideBarVariants}
             animate={isOpen ? 'open' : 'closed'}

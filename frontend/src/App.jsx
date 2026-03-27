@@ -1,27 +1,23 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { Login } from './pages/login/Login';
-import Home from './pages/home/Home'
-import AboutUs from './pages/about/About';
-import Product from './pages/product/Product';
-import ReviewPage from './pages/review/ReviewPage';
-import ChatBox from './pages/chatbox/ChatBox';
-import { SignUp } from './pages/signin/SignUp';
+import ErrorPage from './pages/error/ErrorPage';
+import HomePage from './pages/home/HomePage';
+import { AuthenticateProvider } from './context/userAuthenticateContext';
 
 
 function App() {
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/product" element={<Product />} />
-        <Route path="/login" element={<Login />} />
-        <Route path='signup' element={<SignUp />} />
-        <Route path='/review' element={<ReviewPage />} />
-        <Route path='/chatbox' element={<ChatBox />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthenticateProvider>
+      <BrowserRouter>        
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path='/*' element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter >
+    </AuthenticateProvider>
   );
 }
 
