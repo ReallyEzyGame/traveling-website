@@ -12,12 +12,12 @@ export function signUp(userEmail, userPassword, userPasswordValidation) {
 // input: email và mật khẩu đăng nhập
 // output: xác thực đã đăng nhập thành công hay chưa
 export function signIn(userEmail, userPassword) {
-    return true;
+    return true
 }
 
 
 // hàm này là sử dụng dữ liệu giả thông qua việc lưu trữ trong local storage
-// khi hoàn thành nên có cách sử lý khác
+// khi hoàn thành nên có cách xử lý khác
 export function logOut() { 
     localStorage.clear();
 }

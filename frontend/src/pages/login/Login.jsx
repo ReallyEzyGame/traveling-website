@@ -22,7 +22,7 @@ const options = [
 const signInMethods = ['Google', 'Facebook', 'Apple'];
 const items = ['Login', 'Sign up'];
 
-export function Login() {
+function Login() {
     // switch between login and sign up
     const [isLogin, setIsLogin] = useState(true);
     const {login} = useAuth();
@@ -104,3 +104,5 @@ export function Login() {
         </div >
     );
 }
+
+export default Login;

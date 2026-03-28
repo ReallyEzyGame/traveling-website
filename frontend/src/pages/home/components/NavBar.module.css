@@ -1,0 +1,68 @@
+.navBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+/* Phần Logo */
+.logoSection {
+  flex: 1;
+  visibility: hidden; /* invisible */
+}
+
+/* Phần Menu chính ở giữa */
+.menuSection {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem; /* gap-8 */
+}
+
+.navItemWrapper {
+  display: flex;
+  background-color: transparent;
+  height: fit-content;
+  width: fit-content;
+  color: #3b82f6; /* text-blue-500 */
+}
+
+/* Phần Auth (Login/Signin) bên phải */
+.authSection {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.authList {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem; /* gap-4 */
+}
+
+.authItemWrapper {
+  display: inline-flex;
+}
+
+/* Style chung cho các Link */
+.navLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Phản hồi cho màn hình nhỏ (tương đương md:invisible) */
+@media (max-width: 768px) {
+  .logoSection {
+    visibility: hidden;
+  }
+}
