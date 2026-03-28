@@ -7,6 +7,8 @@ import { NewsCollection } from './components/NewsCollection';
 import { InputText } from '../../components/input/Input';
 import { Image, Mic, Settings, Siren } from 'lucide-react';
 import styles from './HomePage.module.css';
+import { useSVGOverlay } from 'react-leaflet/SVGOverlay';
+import { useState } from 'react';
 
 
 const services = [
@@ -88,16 +90,38 @@ function HomePage() {
 }
 
 function InputBox({ label, placeholder, type, className, ...props }) {
+  const [isFocus, setIsFocus] = useState(false);
+
   return (
-    <div className={`${className} ${styles.inputBoxContainer}`}>
+    <motion.div className={`${className} ${styles.inputBoxContainer}`}
+      variants={inputFocusAnimation}
+      animate={isFocus ? 'focus' : 'exit'}
+    >
       <label className={styles.inputLabel}>{label}</label>
       <input 
         placeholder={placeholder} 
         type={type} 
         className={`${styles.inputField} ${styles.noScrollbar}`} 
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter'){
+            setIsFocus(false)
+          }
+        }}
       />
-    </div>
+    </motion.div>
   );
 }
 
 export default HomePage;
+
+
+const inputFocusAnimation = {
+  focus: {
+    scale: 0.95
+  },
+  exit: {
+    scale: 1
+  }
+}
