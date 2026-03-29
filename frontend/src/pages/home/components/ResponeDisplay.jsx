@@ -1,21 +1,8 @@
-import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion } from 'framer-motion';
 import { Copy, RefreshCcw } from 'lucide-react';
 import styles from './ResponeDisplay.module.css';
-
-const mockResponse = `
-# Khám phá Tây Ninh: Đỉnh Núi Bà Đen
-
-Chào mừng bạn đến với nóc nhà Nam Bộ! Dưới đây là lịch trình gợi ý:
-
-* **Sáng sớm:** Di chuyển bằng cáp treo lên đỉnh núi để săn mây.
-* **Trưa:** Thưởng thức đặc sản *Bánh tráng phơi sương* Trảng Bàng.
-* **Lưu ý:** Nhiệt độ trên đỉnh thường thấp hơn 3-5 độ so với chân núi.
-
-> Chúc bạn có một chuyến đi an toàn và đầy trải nghiệm!
-`;
 
 // Trong HomePage():
 // <ResponseDisplay content={mockResponse} isStreaming={false} />

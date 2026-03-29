@@ -1,20 +1,20 @@
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { NavBar } from './components/NavBar';
-import { HeroBanner } from './components/HeroBanner';
+import { HeroBanner } from './components/hero_banner/HeroBanner';
 import { TravelMap } from './components/MapBox';
 import { NewsCollection } from './components/NewsCollection';
 import { Image, Mic, Settings, Siren } from 'lucide-react';
 import styles from './HomePage.module.css';
 import { useState } from 'react';
 import { ResponseDisplay } from './components/ResponeDisplay';
-
+import { InputText } from '../../components/input/Input';
 
 const services = [
-    {name: 'SOS', path: '/sos', icon: Siren},
-    {name: 'Voice', path: '/voice', icon: Mic},
-    {name: 'Picture', path: '/picture', icon: Image},
-    {name: 'Setting', path: '/setting', icon: Settings}
+  { name: 'SOS', path: '/sos', icon: Siren },
+  { name: 'Voice', path: '/voice', icon: Mic },
+  { name: 'Picture', path: '/picture', icon: Image },
+  { name: 'Setting', path: '/setting', icon: Settings }
 ]
 
 const mockResponse = `
@@ -41,20 +41,21 @@ function HomePage() {
 
         <br />
 
+        {/* Section Search Bar: giữ nguyên */}
         <div className={styles.searchSection}>
           <div className={styles.inputGrid}>
-            <InputBox 
-              label={'From'} 
-              placeholder={'Ho Chi Minh City'} 
-              className={styles.inputBoxContainer} 
+            <InputBox
+              label={'From'}
+              placeholder={'Ho Chi Minh City'}
+              className={styles.inputBoxContainer}
             />
-            <InputBox 
-              label={'To'} 
-              placeholder={'Ho Chi Minh City'} 
-              className={styles.inputBoxContainer} 
+            <InputBox
+              label={'To'}
+              placeholder={'Ho Chi Minh City'}
+              className={styles.inputBoxContainer}
             />
           </div>
-          <motion.div 
+          <motion.div
             className={styles.searchBtn}
             whileTap={{ scale: 0.9 }}
           >
@@ -64,19 +65,29 @@ function HomePage() {
 
         <br />
 
-        <div className={styles.servicesGrid}>
-          {services.map(service => (
-            <motion.div 
-              className={styles.serviceItem}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.25 }}
-              key={service.name}
-            >
-              <NavLink className={styles.navLink} to={service.path}>
-                <service.icon /> {service.name}
-              </NavLink>
-            </motion.div>
-          ))}
+        <div className={styles.servicesGridContainer}> {/* Centered, depth container */}
+          <div className={styles.servicesGrid}> {/* Actual 4-col grid */}
+            {services.map(service => (
+              <motion.div
+                className={styles.serviceItem} // New style for individual card
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.25 }}
+                key={service.name}
+              >
+                <NavLink
+                  className={styles.navLink} // simple full flex wrapper
+                  to={service.path}
+                >
+                  <div className={styles.serviceButton}> {/* Content wrapper: column layout */}
+                    <div className={styles.serviceIconWrapper}>
+                      <service.icon className={styles.serviceIcon} /> {/* styled icon */}
+                    </div>
+                    <span className={styles.serviceName}>{service.name}</span> {/* styled text */}
+                  </div>
+                </NavLink>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         <br />
@@ -88,11 +99,15 @@ function HomePage() {
 
         <br />
 
-        <ResponseDisplay content={mockResponse} />
+        <div className={`${styles.bottomInputWrapper} ${styles.noScrollbar}`}>
+          <InputText />
+        </div>
 
         <motion.div className={styles.aiFloatingBtn}>
           <p>AI</p>
         </motion.div>
+
+        <ResponseDisplay content={mockResponse} />
       </div>
     </div>
   );
@@ -100,11 +115,11 @@ function HomePage() {
 
 // ... các imports giữ nguyên
 
-function InputBox({ label, placeholder, type, className, ...props }) {
+function InputBox({ label, placeholder, type, className, value, onChange, ...props }) {
   const [isFocus, setIsFocus] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       className={`${className} ${styles.inputBoxContainer}`}
       variants={inputFocusAnimation}
       initial="exit"
@@ -112,14 +127,16 @@ function InputBox({ label, placeholder, type, className, ...props }) {
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       <label className={styles.inputLabel}>{label}</label>
-      <input 
-        placeholder={placeholder} 
-        type={type} 
-        className={`${styles.inputField} ${styles.noScrollbar}`} 
+      <input
+        placeholder={placeholder}
+        type={type}
+        value={value}
+        className={`${styles.inputField} ${styles.noScrollbar}`}
+        onChange={onChange}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         onKeyDown={(e) => {
-          if (e.key === 'Enter'){
+          if (e.key === 'Enter') {
             e.target.blur(); // Tự động kích hoạt onBlur và thoát focus
           }
         }}
