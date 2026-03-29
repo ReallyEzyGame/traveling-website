@@ -4,11 +4,10 @@ import { NavBar } from './components/NavBar';
 import { HeroBanner } from './components/HeroBanner';
 import { TravelMap } from './components/MapBox';
 import { NewsCollection } from './components/NewsCollection';
-import { InputText } from '../../components/input/Input';
 import { Image, Mic, Settings, Siren } from 'lucide-react';
 import styles from './HomePage.module.css';
-import { useSVGOverlay } from 'react-leaflet/SVGOverlay';
 import { useState } from 'react';
+import { ResponseDisplay } from './components/ResponeDisplay';
 
 
 const services = [
@@ -17,6 +16,18 @@ const services = [
     {name: 'Picture', path: '/picture', icon: Image},
     {name: 'Setting', path: '/setting', icon: Settings}
 ]
+
+const mockResponse = `
+# Khám phá Tây Ninh: Đỉnh Núi Bà Đen
+
+Chào mừng bạn đến với nóc nhà Nam Bộ! Dưới đây là lịch trình gợi ý:
+
+* **Sáng sớm:** Di chuyển bằng cáp treo lên đỉnh núi để săn mây.
+* **Trưa:** Thưởng thức đặc sản *Bánh tráng phơi sương* Trảng Bàng.
+* **Lưu ý:** Nhiệt độ trên đỉnh thường thấp hơn 3-5 độ so với chân núi.
+
+> Chúc bạn có một chuyến đi an toàn và đầy trải nghiệm!
+`;
 // Giả sử các component này đã được import
 // import NavBar from './NavBar';
 // ...
@@ -77,9 +88,7 @@ function HomePage() {
 
         <br />
 
-        <div className={`${styles.bottomInputWrapper} ${styles.noScrollbar}`}>
-          <InputText />
-        </div>
+        <ResponseDisplay content={mockResponse} />
 
         <motion.div className={styles.aiFloatingBtn}>
           <p>AI</p>
@@ -89,13 +98,18 @@ function HomePage() {
   );
 }
 
+// ... các imports giữ nguyên
+
 function InputBox({ label, placeholder, type, className, ...props }) {
   const [isFocus, setIsFocus] = useState(false);
 
   return (
-    <motion.div className={`${className} ${styles.inputBoxContainer}`}
+    <motion.div 
+      className={`${className} ${styles.inputBoxContainer}`}
       variants={inputFocusAnimation}
+      initial="exit"
       animate={isFocus ? 'focus' : 'exit'}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
       <label className={styles.inputLabel}>{label}</label>
       <input 
@@ -106,7 +120,7 @@ function InputBox({ label, placeholder, type, className, ...props }) {
         onBlur={() => setIsFocus(false)}
         onKeyDown={(e) => {
           if (e.key === 'Enter'){
-            setIsFocus(false)
+            e.target.blur(); // Tự động kích hoạt onBlur và thoát focus
           }
         }}
       />
@@ -114,14 +128,21 @@ function InputBox({ label, placeholder, type, className, ...props }) {
   );
 }
 
-export default HomePage;
-
-
+// Cập nhật Animation: Thêm boxShadow để tạo hiệu ứng nhấn
 const inputFocusAnimation = {
   focus: {
-    scale: 0.95
+    scale: 0.98,
+    boxShadow: "0px 10px 20px rgba(147, 197, 253, 0.5)", // Đổ bóng xanh nhẹ khi nhấn
+    borderColor: "#3b82f6", // Làm đậm viền một chút
   },
   exit: {
-    scale: 1
+    scale: 1,
+    boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.05)", // Đổ bóng mặc định tạo độ sâu
+    borderColor: "#93c5fd",
   }
 }
+
+
+
+
+export default HomePage;
